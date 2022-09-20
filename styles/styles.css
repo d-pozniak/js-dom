@@ -1,0 +1,44 @@
+*:before,
+*:after,
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+div,
+span,
+a,
+img,
+footer,
+header,
+nav,
+ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.page-wrapper{
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+.side-menu{
+
+}
+.nav-list{
+    list-style: none;
+}
+.nav-list--item{
+    font-size: 25px;
+    padding: 15px 25px;
+    cursor:pointer;
+}
+.nav-list--item:hover{
+    background-color: lightseagreen;
+}
+.content-wrapper{
+    width: 80%;
+}
+.page-title{
+    text-align: center;
+}
