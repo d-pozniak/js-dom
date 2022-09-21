@@ -88,6 +88,8 @@ function showIntroContent(){
     description.appendChild(tempDescr);
 }
 
+let clickedId;
+
 function showPlantInfo(e){
     return function(){
         const plantToShow = Plants.filter((plant) => plant.id === e.id[e.id.length - 1] )[0];
@@ -101,12 +103,25 @@ function showPlantInfo(e){
     }
 }
 
+function makeActive(e){
+    return function () {
+        if (clickedId && (e.id !== clickedId)) {
+            document.getElementById(clickedId).classList.remove('active');
+        }
+        clickedId = e.id;
+        e.classList.add('active');
+    }
+}
+
 function main(){
     createListItems();
     showIntroContent();
 
     const plants = document.querySelectorAll('.nav-list--item');
-    plants.forEach((plant) => plant.addEventListener("click", showPlantInfo(plant)));
+    plants.forEach((plant) => {
+        plant.addEventListener("click", showPlantInfo(plant));
+        plant.addEventListener("click", makeActive(plant));
+    });
 }
 
 document.addEventListener("DOMContentLoaded", main);

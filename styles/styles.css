@@ -14,30 +14,40 @@ header,
 nav,
 ul,
 h1,
-h2{
+h2,
+h3,
+p{
     margin: 0;
     padding: 0;
     border: 0;
 }
 body{
     font-family: Helvetica, sans-serif;
+    color: #2F4F4F;
 }
 .page-wrapper{
     margin: 0 auto;
-    max-width: 1440px;
+    max-width: 1560px;
     padding: 0 20px;
 }
 .page-header{
     margin: 20px 0;
     padding: 15px 10px;
-    background-color: lightgray;
+    background-image: linear-gradient(to right, transparent, rgba(143, 188, 143, 0.8));
+    border-radius: 8px;
+}
+.page-logo{
+    display: flex;
+    justify-content: flex-end;
 }
 .page-logo a{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     text-decoration: none;
-    color: black;
+    color: #2F4F4F;
+}
+.page-logo svg{
+    fill: #2F4F4F;
 }
 .page-title{
     margin: 0 10px;
@@ -45,7 +55,6 @@ body{
 .sections-wrapper{
     display: flex;
     justify-content: space-between;
-    /*height: 100vh;*/
 }
 .side-menu{
 
@@ -54,16 +63,63 @@ body{
     list-style: none;
 }
 .nav-list--item{
-    font-size: 25px;
-    padding: 15px 25px;
+    font-size: 24px;
+    padding: 15px;
     cursor:pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    margin: 5px;
 }
 .nav-list--item:hover{
-    background-color: lightseagreen;
+    background-color: rgba(143, 188, 143, 0.4);
+    border-radius: 8px;
 }
 .main-content--wrapper{
     width: 80%;
 }
-.content-title{
+.main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 100%;
+    border-radius: 8px;
+    border: 3px dotted rgba(143, 188, 143, 0.4);
+}
+.content-heading{
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+}
+.content-heading.plant {
+    border-color: rgba(143, 188, 143, 0.6);
     text-align: center;
+}
+.content-subheading{
+    text-align: center;
+    font-family: cursive;
+    font-weight: normal;
+    padding: 10px;
+}
+.content-description{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.plant-img{
+    height: 275px;
+    margin: 20px 0;
+}
+.content-text{
+    font-size: 22px;
+}
+.active{
+    border-color: #2F4F4F;
+    background-color: rgba(143, 188, 143, 0.8);
+}
+.active:hover{
+    background-color: rgba(143, 188, 143, 0.8);
 }
