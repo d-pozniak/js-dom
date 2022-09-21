@@ -103,14 +103,20 @@ function showPlantInfo(e){
     }
 }
 
-function makeActive(e){
+function makeFocused(e){
     return function () {
         if (clickedId && (e.id !== clickedId)) {
-            document.getElementById(clickedId).classList.remove('active');
+            document.getElementById(clickedId).classList.remove('focused');
         }
         clickedId = e.id;
-        e.classList.add('active');
+        e.classList.add('focused');
     }
+}
+function toggleBurgerMenu(){
+    const dropMenu = document.querySelector('.side-menu');
+    dropMenu.classList.add('active');
+    const plants = document.querySelectorAll('.nav-list--item');
+    plants.forEach((plant) => plant.addEventListener('click', () => dropMenu.classList.remove('active')));
 }
 
 function main(){
@@ -120,8 +126,10 @@ function main(){
     const plants = document.querySelectorAll('.nav-list--item');
     plants.forEach((plant) => {
         plant.addEventListener("click", showPlantInfo(plant));
-        plant.addEventListener("click", makeActive(plant));
+        plant.addEventListener("click", makeFocused(plant));
     });
+    const burgerButton = document.querySelector('.burger-menu');
+    burgerButton.addEventListener('click', toggleBurgerMenu);
 }
 
 document.addEventListener("DOMContentLoaded", main);
