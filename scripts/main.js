@@ -1,3 +1,5 @@
+'use strict';
+
 const Plants = [
     {
         id: '1',
@@ -88,48 +90,47 @@ function showIntroContent(){
     description.appendChild(tempDescr);
 }
 
-let clickedId;
-
 function showPlantInfo(e){
-    return function(){
-        const plantToShow = Plants.filter((plant) => plant.id === e.id[e.id.length - 1] )[0];
+    if (e.target !== e.currentTarget) {
+        const plantToShow = Plants.filter((plant) => plant.id === e.target.id[e.target.id.length - 1])[0];
         const [heading, description] = getElementsToModify();
         const tempHeading = createTempEl('h2', ['content-heading', 'plant'], plantToShow.commonName);
         const tempLatin = createTempEl('h3', ['content-subheading'], plantToShow.botanicalName)
         const tempImg = createTempImg(['plant-img'], plantToShow.img, plantToShow.commonName);
-        const tempDescr = createTempEl('p', ['content-text'],plantToShow.description);
+        const tempDescr = createTempEl('p', ['content-text'], plantToShow.description);
         heading.replaceChildren(tempHeading, tempLatin);
         description.replaceChildren(tempImg, tempDescr);
     }
+    if (window.matchMedia('max-width: 720px')) document.querySelector('.side-menu').classList.remove('active');
+
 }
 
+let clickedId;
+
 function makeFocused(e){
-    return function () {
-        if (clickedId && (e.id !== clickedId)) {
+    if (e.target !== e.currentTarget){
+        if (clickedId && (e.target.id !== clickedId)) {
             document.getElementById(clickedId).classList.remove('focused');
         }
-        clickedId = e.id;
-        e.classList.add('focused');
+        clickedId = e.target.id;
+        e.target.classList.add('focused');
     }
 }
-function toggleBurgerMenu(){
-    const dropMenu = document.querySelector('.side-menu');
-    dropMenu.classList.add('active');
-    const plants = document.querySelectorAll('.nav-list--item');
-    plants.forEach((plant) => plant.addEventListener('click', () => dropMenu.classList.remove('active')));
+
+function addBurgerMenu(){
+    document.querySelector('.side-menu').classList.add('active');
 }
 
 function main(){
     createListItems();
     showIntroContent();
 
-    const plants = document.querySelectorAll('.nav-list--item');
-    plants.forEach((plant) => {
-        plant.addEventListener("click", showPlantInfo(plant));
-        plant.addEventListener("click", makeFocused(plant));
-    });
+    const plants= document.querySelector('.nav-list');
+    plants.addEventListener("click", elem => {showPlantInfo(elem)});
+    plants.addEventListener("click", elem => {makeFocused(elem)});
+
     const burgerButton = document.querySelector('.burger-menu');
-    burgerButton.addEventListener('click', toggleBurgerMenu);
+    burgerButton.addEventListener('click', addBurgerMenu);
 }
 
 document.addEventListener("DOMContentLoaded", main);
