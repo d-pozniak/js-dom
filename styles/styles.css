@@ -71,6 +71,9 @@ body{
     min-width: 80%;
     padding: 0 10px;
 }
+.side-menu{
+    margin-right: 10px;
+}
 .nav-list{
     list-style: none;
 }
